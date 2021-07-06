@@ -13,12 +13,12 @@ jobs:
       - uses: actions/checkout@v2
       - name: Create Pull Request
         id: cpr
-        uses: DiachokSlavko/create-pull-request@v3
+        uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.TOKENSTMTEST }}
       - name: Enable Pull Request Automerge
         if: steps.cpr.outputs.pull-request-operation == 'created'
-        uses: DiachokSlavko/enable-pull-request-automerge@v1
+        uses: peter-evans/enable-pull-request-automerge@v1
         with:
           token: ${{ secrets.TOKENSTMTEST }}
           pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
